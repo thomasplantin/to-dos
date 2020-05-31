@@ -22,6 +22,14 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
 
+app.post('/signup', (req, res) => {
+  res.sendFile(__dirname + '/public/views/signup.html');
+});
+
+app.post('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/views/login.html');
+});
+
 app.listen(PORT, () => {
     console.log('[INFO] Listening on port ' + PORT + '...');
 });
