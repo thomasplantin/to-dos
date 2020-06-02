@@ -18,8 +18,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 // app.set('views', path.join(__dirname, '/public/views')); // Places views in static
 
 // Import my routes
-const routerSignup = require('./routes/signup.js');
+const routerSignup = require('./public/static/routes/signup_route.js');
 app.use(routerSignup);
+const routerHome = require('./public/static/routes/home_route.js');
+app.use(routerHome);
 
 app.get('/', (req, res) => {
   // Returns the root page of the project

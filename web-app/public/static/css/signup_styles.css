@@ -35,8 +35,15 @@ a:hover
 
 .central-square {
   margin: auto;
-  margin-top: 10%;
+  margin-top: 20px;
   padding: 2% 0;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.g-signin2 {
+  text-align: center;
+  display: inline-block;
 }
 
 /* Footer Section */

@@ -4,12 +4,8 @@ const pbkdf2 = require("pbkdf2");
 
 const router = express.Router();
 
-const {
-  SALT
-} = require('./../config.js');
-
-router.post('/submitSignup', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views', 'login.html'));
+router.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../views', 'home.html'));
 });
 
 module.exports = router;
