@@ -23,8 +23,6 @@
 
   <!-- Google Sign In scripts -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-  <script type="text/javascript" src="static/js/signup.js"></script>
   
 </head>
 
@@ -35,39 +33,79 @@
     <p>Your to-do list with you, anywhere you go.</p>
   </div>
 
-  <div class="central-square">
-    <h2>Email Sign Up</h2>
-    <form action="/submitSignup" method="POST" enctype="multipart/form-data">
-      <div class="field-dim">
-        <label class="field-info">First Name</label>
-        <input type="text" id="firstName" name="firstName" required>
-      </div>
-      <div class="field-dim">
-        <label class="field-info">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required>
-      </div>
-      <div class="field-dim">
-        <label class="field-info">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="field-dim">
-        <label class="password">Password</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <hr>
-    
-    <p>OR</p>
+  <table class="table-struc">
 
-    <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
-    <div id="content"></div>
-    <br>
-    <img id="avatar" alt="">
-    <hr>
-    <button onclick="signOut()" class="btn btn-danger">Sign Out</button>
-    
-  </div>
+    <tr>
+
+      <td class="table-col">
+
+        <div class="central-square">
+          
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field">
+
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field">
+
+          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field">
+          
+          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field">
+
+          <br>
+          
+          <button id="btnLogIn" class="btn btn-light">Log In</button>
+
+          <button id="btnSignUp" class="btn btn-primary">Sign Up</button>
+
+          <!-- <hr>
+
+          <p>OR</p>
+
+          <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+          <div id="content"></div>
+          <br>
+          <img id="avatar" alt="">
+          <hr>
+          <button onclick="signOut()" class="btn btn-danger">Sign Out</button> -->
+          
+        </div>
+        
+        <div id="errMsgBg" class="err-msg-bg hide">
+          <p id="errMsg" class="err-msg hide">Here it is nqUivzIebhndOJK28anvf</p>
+        </div>
+
+        <button id="btnLogout" class="btn btn-danger hide">Logout</button>
+
+      </td>
+
+      <!-- <div class="vertical-line"></div> -->
+      <td class="vertical-line">
+      </td>
+
+      <td class="table-col">
+        <div class="central-square">
+
+          <!-- <hr>
+
+          <p>OR</p>
+
+          <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+          <div id="content"></div>
+          <br>
+          <img id="avatar" alt="">
+          <hr>
+          <button onclick="signOut()" class="btn btn-danger">Sign Out</button> -->
+          <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+
+          <button id="btnSignUp" class="btn btn-primary">Sign in with Facebook</button>
+
+
+          
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
         
 
   <!-- Footer -->
@@ -84,6 +122,18 @@
   </footer>
 
   <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+
+  <script type="text/javascript" src="static/js/signup.js"></script>
 
 </body>
 

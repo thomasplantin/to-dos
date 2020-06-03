@@ -6,21 +6,22 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-image: url(../images/to-dos-background-3.png);
+  background-image: url(../images/to-dos-background-2.png);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 900;
+  color: #e1f4f3;
 }
 
 p {
-  color: #041110;
+  color: #e1f4f3;
   font-size: 1.3rem;
   margin: 0;
 }
 
 a {
-  color: #041110;
+  color: #e1f4f3;
 }
 
 a:hover
@@ -33,17 +34,50 @@ a:hover
   margin-top: 30px;
 }
 
+.table-struc {
+  margin: 50px auto 0;
+}
+
+.table-col {
+  margin: 10px;
+}
+
 .central-square {
   margin: auto;
   margin-top: 20px;
   padding: 2% 0;
   width: 300px;
-  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.field {
+  margin: 5px 0;
+}
+
+.btn {
+  margin: 10px 5px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.err-msg-bg {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.err-msg {
+  color: red;
+  font-size: medium;
 }
 
 .g-signin2 {
   text-align: center;
   display: inline-block;
+}
+
+.vertical-line {
+  background-color: green;
 }
 
 /* Footer Section */
