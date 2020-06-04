@@ -11,7 +11,7 @@
 
   <!-- Bootstrap + CSS style sheet -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type='text/css' href="static/css/signup_styles.css">
+  <link rel="stylesheet" type='text/css' href="static/css/auth_styles.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -23,24 +23,18 @@
 
   <!-- Google Sign In scripts -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-  <script type="text/javascript" src="static/js/home.js"></script>
   
 </head>
 
 <body>
 
   <div class="top-title">
-    <h1>To-Dos</h1>
+    <h1>To-Dos | HOME</h1>
     <p>Your to-do list with you, anywhere you go.</p>
   </div>
 
   <div class="central-square">
-    <div id="content"></div>
-    <br>
-    <img id="avatar" alt="">
-    <hr>
-    <button onclick="signOut()" class="btn btn-danger">Sign Out</button>
+    <button id="btnLogout" type="button" class="btn btn-danger">Logout</button>
   </div>
         
 
@@ -58,6 +52,19 @@
   </footer>
 
   <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+
+  <script type="text/javascript" src="static/js/home.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>
 

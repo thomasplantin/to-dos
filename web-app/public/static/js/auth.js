@@ -1,16 +1,12 @@
-// const info = require('./../../../config.js');
-
-// console.log(info.FIREBASE_API_KEY);
-
 const config = {
-  // apiKey: info.FIREBASE_API_KEY,
-  // authDomain: info.FIREBASE_AUTH_DOMAIN,
-  // databaseURL: info.FIREBASE_DATABASE_URL,
-  // storageBucket: info.FIREBASE_STORAGE_BUCKET,
   apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
   authDomain: "to-dos-f9e3d.firebaseapp.com",
   databaseURL: "https://to-dos-f9e3d.firebaseio.com",
+  projectId: "to-dos-f9e3d",
   storageBucket: "to-dos-f9e3d.appspot.com",
+  messagingSenderId: "560702819439",
+  appId: "1:560702819439:web:546d3a7359b01a91ef119a",
+  measurementId: "G-QMTJE3FMT8"
 };
 
 firebase.initializeApp(config);
@@ -22,7 +18,6 @@ const txtEmail = document.getElementById('txtEmail');
 const txtPassword = document.getElementById('txtPassword');
 const btnLogin = document.getElementById('btnLogIn');
 const btnSignUp = document.getElementById('btnSignUp');
-const btnLogout = document.getElementById('btnLogout');
 const txtErrMsg = document.getElementById('errMsg');
 const errMsgBg = document.getElementById('errMsgBg');
 
@@ -59,35 +54,34 @@ btnSignUp.addEventListener('click', e => {
   });
 });
 
-// Add logout event
-btnLogout.addEventListener('click', e => {
-  firebase.auth().signOut();
-});
-
 // Add a realtime listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
-    console.log(firebaseUser);
-    errMsgBg.classList.add('hide');
-    txtErrMsg.classList.add('hide');
-    btnLogout.classList.remove('hide');
+    console.log(`Logged in as ${txtFirstName.value} ${txtLastName.value} (${firebaseUser.email})`);
+    firebaseUser.getIdToken().then(function(token) {
+      document.cookie = "token=" + token;
+    });
+    sendUser(firebaseUser);
   } else {
     console.log('not logged in');
-    btnLogout.classList.add('hide');
   }
 });
 
-// function onGoogleSignIn(googleUser) {
-//   const profile = googleUser.getBasicProfile();
-//   // window.location.replace('/home');
-//   console.log(window.location.pathname);
-//   console.log("Google User = " + JSON.stringify(googleUser));
-//   document.querySelector("#content").innerText = profile.getName();
-//   document.querySelector("#avatar").setAttribute('src', profile.getImageUrl());
-// }
-
-// function signOut() {
-//   gapi.auth2.getAuthInstance().signOut().then( function() {
-//     console.log('User signed out');
-//   });
-// }
+function sendUser(user) {
+  console.log("Sending User")
+  $.ajax({
+    type:'post',
+    url: window.location.origin + "/auth",
+    data: {
+      email: user.email,
+      username: user.displayName
+    },
+    success: function() {
+      console.log("SUCCESS")
+      window.location.href = window.location.origin + '/home';
+    },
+    error: function() {
+        alert("Oops, couldn't log in. Please try again!");
+    }
+  });
+}

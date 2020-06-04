@@ -29,20 +29,9 @@
   </div>
 
   <div class="central-square">
-    <table class="btn-table">
-      <tr>
-        <td>
-          <form action="/signup" method="POST">
-            <button id="sign-up-btn" type="submit" class="btn btn-primary">Sign Up</button>
-          </form>
-        </td>
-        <td>
-          <form action="/login" method="POST">
-            <button id="log-in-btn" type="submit" class="btn btn-success">Log In</button>
-          </form>
-        </td>
-      </tr>
-    </table>
+    <form action="/auth" method="POST">
+      <button id="sign-up-btn" type="submit" class="btn btn-primary">Auth</button>
+    </form>
   </div>
         
 
@@ -58,6 +47,8 @@
       <p class="copyright-para">© Copyright 2020 To-Dos</p>
     </div>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>
 
