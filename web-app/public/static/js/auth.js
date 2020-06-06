@@ -21,6 +21,8 @@ const btnSignUp = document.getElementById('btnSignUp');
 const txtErrMsg = document.getElementById('errMsg');
 const errMsgBg = document.getElementById('errMsgBg');
 
+const btnGoogleSignIn = document.getElementById('btnSignInGoogle');
+
 // Add login event
 btnLogin.addEventListener('click', e => {
   // Get email and pass
@@ -51,6 +53,19 @@ btnSignUp.addEventListener('click', e => {
     errMsgBg.classList.remove('hide');
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = e.message;
+  });
+});
+
+// Add Google Sign In Event
+btnGoogleSignIn.addEventListener('click', e => {
+  const base_provider = new firebase.auth.GoogleAuthProvider();
+  const auth = firebase.auth();
+  auth.signInWithPopup(base_provider).then(function(result) {
+    console.log(result);
+    console.log('Success, Google account linked!');
+  }).catch(function(e) {
+    console.log(e);
+    console.log('Failed to link Google account');
   });
 });
 

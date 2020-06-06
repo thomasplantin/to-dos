@@ -16,6 +16,9 @@ const btnLogout = document.getElementById('btnLogout');
 // Add a realtime listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
+
+    document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.email}!`
+
     // Add logout event
     btnLogout.addEventListener('click', e => {
       firebase.auth().signOut().then(function() {
