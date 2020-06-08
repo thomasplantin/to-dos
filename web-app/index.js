@@ -13,14 +13,14 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Import my routes
-const routerSignup = require('./public/static/routes/auth_route.js');
+const routerSignup = require('./back-end/routes/auth_route.js');
 app.use(routerSignup);
-const routerHome = require('./public/static/routes/home_route.js');
+const routerHome = require('./back-end/routes/home_route.js');
 app.use(routerHome);
 
 app.get('/', (req, res) => {
   // Returns the root page of the project
-  res.sendFile('index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.post('/auth', (req, res) => {
