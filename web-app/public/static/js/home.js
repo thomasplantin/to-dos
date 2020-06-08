@@ -17,7 +17,7 @@ const btnLogout = document.getElementById('btnLogout');
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
 
-    document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.email}!`
+    document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.displayName}!`;
 
     // Add logout event
     btnLogout.addEventListener('click', e => {
@@ -47,3 +47,12 @@ function sendUserToOrigin() {
     }
   });
 }
+
+// Firebase Database
+const preObj = document.getElementById('object');
+
+const dbRefObj = firebase.database().ref().child('collection');
+
+dbRefObj.on('value', snap => {
+  console.log(snap.val());
+});
