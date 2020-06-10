@@ -11,18 +11,14 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Update firestore settings
-// db.settings({timestampsInSnapshots: true});
-
 // Get elements
 const txtFirstName = document.getElementById('firstName');
 const txtLastName = document.getElementById('lastName');
 const txtEmail = document.getElementById('txtEmail');
 const txtPassword = document.getElementById('txtPassword');
 const btnLogin = document.getElementById('btnLogIn');
-const btnSignUp = document.getElementById('btnSignUp');
+// const btnSignUp = document.getElementById('btnSignUp');
 const txtErrMsg = document.getElementById('errMsg');
-const errMsgBg = document.getElementById('errMsgBg');
 
 const btnGoogleSignIn = document.getElementById('btnSignInGoogle');
 
@@ -35,7 +31,6 @@ btnLogin.addEventListener('click', e => {
   const promise = auth.signInWithEmailAndPassword(email, pass);
   promise.catch(e => {
     console.log(e.message);
-    errMsgBg.classList.remove('hide');
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = e.message;
   });
@@ -43,19 +38,26 @@ btnLogin.addEventListener('click', e => {
 });
 
 // Add signup event
-btnSignUp.addEventListener('click', e => {
-  // Get email and pass
-  const email = txtEmail.value;
-  const pass = txtPassword.value;
-  // Sign in
-  const promise = auth.createUserWithEmailAndPassword(email, pass);
-  promise.catch(e => {
-    console.log(e.message);
-    errMsgBg.classList.remove('hide');
-    txtErrMsg.classList.remove('hide');
-    txtErrMsg.innerHTML = e.message;
-  });
-});
+// btnSignUp.addEventListener('click', e => {
+//   // Get email and pass
+//   const firstName = txtFirstName.value;
+//   const lastName = txtLastName.value;
+//   const email = txtEmail.value;
+//   const pass = txtPassword.value;
+//   console.log(firstName, lastName);
+//   if(firstName === '' || lastName === '') {
+//     txtErrMsg.classList.remove('hide');
+//     txtErrMsg.innerHTML = "Type a first name and a last name.";
+//   } else {
+//     // Sign in
+//     const promise = auth.createUserWithEmailAndPassword(email, pass);
+//     promise.catch(e => {
+//       console.log(e.message);
+//       txtErrMsg.classList.remove('hide');
+//       txtErrMsg.innerHTML = e.message;
+//     });
+//   }
+// });
 
 // Add Google Sign In Event
 btnGoogleSignIn.addEventListener('click', e => {
@@ -72,7 +74,7 @@ btnGoogleSignIn.addEventListener('click', e => {
 // Add a realtime listener
 auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
-    console.log(`Logged in as ${txtFirstName.value} ${txtLastName.value} (${firebaseUser.email})`);
+    console.log(`Logged in as (${firebaseUser.email})`);
     firebaseUser.getIdToken().then(function(token) {
       document.cookie = "token=" + token;
     });
@@ -86,7 +88,7 @@ function sendUser(user) {
   console.log("Sending User")
   $.ajax({
     type:'get',
-    url: window.location.origin + "/auth",
+    url: window.location.origin + "/login",
     data: {
       email: user.email,
       username: user.displayName

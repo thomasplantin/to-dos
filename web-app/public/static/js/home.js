@@ -11,6 +11,24 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+const list = document.getElementById('list');
+
+db.collection('users').get().then(snapshot => {
+  let html = '';
+  snapshot.docs.forEach(doc => {
+    const guide = doc.data();
+    const li = `
+    <li>
+      <p>${guide.email}</p>
+      <p>${guide.firstName}</p>
+      <p>${guide.lastName}</p>
+    </li>
+    `;
+    html += li;
+  });
+  list.innerHTML = html;
+});
+
 // Update firestore settings
 // db.settings({timestampsInSnapshots: true});
 
@@ -43,7 +61,7 @@ function sendUserToOrigin() {
     url: window.location.origin + "/home",
     success: function() {
       console.log("SUCCESS")
-      window.location.href = window.location.origin + '/auth';
+      window.location.href = window.location.origin + '/login';
     },
     error: function() {
       alert("Oops, couldn't log in. Please try again!");
@@ -51,11 +69,11 @@ function sendUserToOrigin() {
   });
 }
 
-// Firebase Database
-const preObj = document.getElementById('object');
+// // Firebase Database
+// const preObj = document.getElementById('object');
 
-const dbRefObj = firebase.database().ref().child('collection');
+// const dbRefObj = firebase.database().ref().child('collection');
 
-dbRefObj.on('value', snap => {
-  console.log(snap.val());
-});
+// dbRefObj.on('value', snap => {
+//   console.log(snap.val());
+// });

@@ -28,52 +28,70 @@
 
 <body>
 
-  <div class="top-title">
-    <h1>To-Dos</h1>
-    <p>Your to-do list with you, anywhere you go.</p>
-  </div>
-
   <table class="table-struc">
 
     <tr>
 
       <td class="table-col">
 
-        <div class="central-square">
-          
-          <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field">
+        <img class="img-style" src="./../static/images/to-dos-logo.png" alt="">
 
-          <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field">
-
-          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field">
-          
-          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field">
-
-          <br>
-          
-          <button id="btnLogIn" class="btn btn-light">Log In</button>
-
-          <button id="btnSignUp" class="btn btn-primary">Sign Up</button>
-          
-        </div>
-        
-        <div id="errMsgBg" class="err-msg-bg hide">
-          <p id="errMsg" class="err-msg hide">Here it is nqUivzIebhndOJK28anvf</p>
-        </div>
-
-
-      </td>
-
-      <td class="vertical-line">
       </td>
 
       <td class="table-col">
+
         <div class="central-square">
 
-          <button id="btnSignInGoogle" class="btn btn-danger">Sign in with Google</button>
+          <div class="sign-up-slogan">
+            <p class="sign-up-slogan-p">Sign up to start creating your online to-do lists.</p>
+          </div>
 
-          <button id="btnSignInFB" class="btn btn-primary">Sign in with Facebook</button>
+          <div class="sign-in-link">
+            <button class="btn btn-google btn-danger" id="btnSignInGoogle">
+              <a class="google-sign-in-link"><i class="fab fa-google"></i> Sign up with Google</a>
+            </button>
+          </div>
 
+          <div class="sign-in-link">
+            <button class="btn btn-fb btn-primary" id="btnSignInFB">
+              <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Sign up with Facebook</a>
+            </button>
+          </div>
+
+          <table class="or-table-struc">
+            <tr>
+              <td class="or-table-col">
+                <div class="or-lines"></div>
+              </td>
+              <td class="or-table-col">
+                <p>OR</p>
+              </td>
+              <td class="or-table-col">
+                <div class="or-lines"></div>
+              </td>
+            </tr>
+          </table>
+
+          <br>
+          
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field form-control">
+
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field form-control">
+
+          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
+          
+          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
+
+          <br>
+
+          <button id="btnSignUp" class="btn btn-auth btn-primary">Sign Up</button>
+
+          <p id="errMsg" class="err-msg hide">My Error Message</p>
+
+        </div>
+
+        <div class="central-square">
+          <p class="to-sign-up">Have an account? <a class="to-sign-up-link" href="./login">Log In</a></p>
         </div>
 
       </td>
@@ -89,14 +107,12 @@
     <div class="container-fluid-footer">
       <table class="table-bottom">
         <tr>
-          <td class="fas-bottom"><a href="mailto: todos.contact@gmail.com"><i class="fas fa-envelope"></i></a></td>
+          <td class="fas-bottom"><a class="footer-env-link" href="mailto: todos.contact@gmail.com"><i class="fas fa-envelope"></i></a></td>
         </tr>
       </table>
       <p class="copyright-para">© Copyright 2020 To-Dos</p>
     </div>
   </footer>
-
-  <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
@@ -108,7 +124,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 
-  <script type="text/javascript" src="static/js/auth.js"></script>
+  <script type="text/javascript" src="static/js/signup.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>

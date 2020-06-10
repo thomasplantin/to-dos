@@ -1,1 +1,126 @@
-<h1>In Login</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="google-signin-client_id" content="560702819439-dfd9dv47eks3ka0e97ar6ut5e1jf7u8t.apps.googleusercontent.com">
+  <title>To-Dos - Log In</title>
+
+  <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap + CSS style sheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type='text/css' href="static/css/auth_styles.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Bootstrap scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- Google Sign In scripts -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+</head>
+
+<body>
+
+  <table class="table-struc">
+
+    <tr>
+
+      <td class="table-col">
+
+        <img class="img-style" src="./../static/images/to-dos-logo.png" alt="">
+
+      </td>
+
+      <td class="table-col">
+
+        <div class="central-square">
+
+          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
+          
+          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
+
+          <br>
+          
+          <button id="btnLogIn" class="btn btn-auth btn-primary">Log In</button>
+
+          <p id="errMsg" class="err-msg hide">My Error Message</p>
+
+          <table class="or-table-struc">
+            <tr>
+              <td class="or-table-col">
+                <div class="or-lines"></div>
+              </td>
+              <td class="or-table-col">
+                <p>OR</p>
+              </td>
+              <td class="or-table-col">
+                <div class="or-lines"></div>
+              </td>
+            </tr>
+          </table>
+
+          <div class="sign-in-link">
+            <button class="btn btn-google btn-danger" id="btnSignInGoogle">
+              <a class="google-sign-in-link"><i class="fab fa-google"></i> Log in with Google</a>
+            </button>
+          </div>
+
+          <div class="sign-in-link">
+            <button class="btn btn-fb btn-primary" id="btnSignInFB">
+              <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Log in with Facebook</a>
+            </button>
+          </div>
+
+          <!-- <button id="btnSignInGoogle" class="btn btn-danger">Sign in with Google</button>
+
+          <button id="btnSignInFB" class="btn btn-primary">Sign in with Facebook</button> -->
+
+        </div>
+
+        <div class="central-square">
+          <p class="to-sign-up">Don't have an account? <a class="to-sign-up-link" href="./signup">Sign Up</a></p>
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
+        
+
+  <!-- Footer -->
+
+  <footer id="footer" class="white-section">
+    <div class="container-fluid-footer">
+      <table class="table-bottom">
+        <tr>
+          <td class="fas-bottom"><a class="footer-env-link" href="mailto: todos.contact@gmail.com"><i class="fas fa-envelope"></i></a></td>
+        </tr>
+      </table>
+      <p class="copyright-para">© Copyright 2020 To-Dos</p>
+    </div>
+  </footer>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+
+  <script type="text/javascript" src="static/js/login.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</body>
+
+</html>
