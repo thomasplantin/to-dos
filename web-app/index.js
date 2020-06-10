@@ -3,9 +3,7 @@ var path = require('path');
 const morgan = require('morgan');
 
 // Import constants from config.js
-const {
-  PORT,
-} = require('./config.js');
+const info = require('./config.js');
 
 const app = express();
 
@@ -23,10 +21,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/auth', (req, res) => {
-  res.sendFile(__dirname + '/public/views/auth.html');
-});
-
-app.listen(PORT, () => {
-    console.log('[INFO] Listening on port ' + PORT + '...');
+app.listen(info.PORT, () => {
+    console.log('[INFO] Listening on port ' + info.PORT + '...');
 });

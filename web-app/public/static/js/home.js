@@ -2,26 +2,29 @@ const config = {
   apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
   authDomain: "to-dos-f9e3d.firebaseapp.com",
   databaseURL: "https://to-dos-f9e3d.firebaseio.com",
-  projectId: "to-dos-f9e3d",
-  storageBucket: "to-dos-f9e3d.appspot.com",
-  messagingSenderId: "560702819439",
-  appId: "1:560702819439:web:546d3a7359b01a91ef119a",
-  measurementId: "G-QMTJE3FMT8"
+  projectId: "to-dos-f9e3d"
 };
 
 firebase.initializeApp(config);
 
+// Make auth and firestore references
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Update firestore settings
+// db.settings({timestampsInSnapshots: true});
+
 const btnLogout = document.getElementById('btnLogout');
 
 // Add a realtime listener
-firebase.auth().onAuthStateChanged(firebaseUser => {
+auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
 
     document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.displayName}!`;
 
     // Add logout event
     btnLogout.addEventListener('click', e => {
-      firebase.auth().signOut().then(function() {
+      auth.signOut().then(function() {
         console.log(`${firebaseUser.email} signed out successfully`);
         sendUserToOrigin();
       }).catch(function(e) {

@@ -2,14 +2,17 @@ const config = {
   apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
   authDomain: "to-dos-f9e3d.firebaseapp.com",
   databaseURL: "https://to-dos-f9e3d.firebaseio.com",
-  projectId: "to-dos-f9e3d",
-  storageBucket: "to-dos-f9e3d.appspot.com",
-  messagingSenderId: "560702819439",
-  appId: "1:560702819439:web:546d3a7359b01a91ef119a",
-  measurementId: "G-QMTJE3FMT8"
+  projectId: "to-dos-f9e3d"
 };
 
 firebase.initializeApp(config);
+
+// Make auth and firestore references
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Update firestore settings
+// db.settings({timestampsInSnapshots: true});
 
 // Get elements
 const txtFirstName = document.getElementById('firstName');
@@ -28,7 +31,6 @@ btnLogin.addEventListener('click', e => {
   // Get email and pass
   const email = txtEmail.value;
   const pass = txtPassword.value;
-  const auth = firebase.auth();
   // Sign in
   const promise = auth.signInWithEmailAndPassword(email, pass);
   promise.catch(e => {
@@ -45,7 +47,6 @@ btnSignUp.addEventListener('click', e => {
   // Get email and pass
   const email = txtEmail.value;
   const pass = txtPassword.value;
-  const auth = firebase.auth();
   // Sign in
   const promise = auth.createUserWithEmailAndPassword(email, pass);
   promise.catch(e => {
@@ -59,7 +60,6 @@ btnSignUp.addEventListener('click', e => {
 // Add Google Sign In Event
 btnGoogleSignIn.addEventListener('click', e => {
   const base_provider = new firebase.auth.GoogleAuthProvider();
-  const auth = firebase.auth();
   auth.signInWithPopup(base_provider).then(function(result) {
     console.log(result);
     console.log('Success, Google account linked!');
@@ -70,7 +70,7 @@ btnGoogleSignIn.addEventListener('click', e => {
 });
 
 // Add a realtime listener
-firebase.auth().onAuthStateChanged(firebaseUser => {
+auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
     console.log(`Logged in as ${txtFirstName.value} ${txtLastName.value} (${firebaseUser.email})`);
     firebaseUser.getIdToken().then(function(token) {
@@ -85,7 +85,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 function sendUser(user) {
   console.log("Sending User")
   $.ajax({
-    type:'post',
+    type:'get',
     url: window.location.origin + "/auth",
     data: {
       email: user.email,
