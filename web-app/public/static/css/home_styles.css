@@ -6,22 +6,22 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  /* background-image: url(../images/to-dos-background-2.png); */
+  background-color: #122c38;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 900;
-  color: #323535;
+  color: #e1f4f3;
 }
 
 p {
-  color: #323535;
+  color: #e1f4f3;
   font-size: 1.3rem;
   margin: 0;
 }
 
 a {
-  color: #323535;
+  color: #e1f4f3;
 }
 
 a:hover
@@ -47,7 +47,6 @@ a:hover
   margin-top: 20px;
   padding: 2% 0;
   width: 300px;
-  /* background-color: rgba(0, 0, 0, 0.3); */
 }
 
 .field {

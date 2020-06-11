@@ -33,7 +33,17 @@ btnSignUp.addEventListener('click', e => {
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = "Type a first name and a last name.";
   } else {
-    // Sign in
+    // Add info to database
+    db.collection('users').doc(email).set({
+      firstName: firstName,
+      lastName: lastName,
+      email: email
+    }).then(function() {
+      console.log('Document successfully written!');
+    }).catch(e => {
+      console.log('Error writing document: ', e);
+    });
+    // Sign up
     const promise = auth.createUserWithEmailAndPassword(email, pass);
     promise.catch(e => {
       console.log(e.message);

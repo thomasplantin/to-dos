@@ -17,7 +17,6 @@ const txtLastName = document.getElementById('lastName');
 const txtEmail = document.getElementById('txtEmail');
 const txtPassword = document.getElementById('txtPassword');
 const btnLogin = document.getElementById('btnLogIn');
-// const btnSignUp = document.getElementById('btnSignUp');
 const txtErrMsg = document.getElementById('errMsg');
 
 const btnGoogleSignIn = document.getElementById('btnSignInGoogle');
@@ -36,28 +35,6 @@ btnLogin.addEventListener('click', e => {
   });
 
 });
-
-// Add signup event
-// btnSignUp.addEventListener('click', e => {
-//   // Get email and pass
-//   const firstName = txtFirstName.value;
-//   const lastName = txtLastName.value;
-//   const email = txtEmail.value;
-//   const pass = txtPassword.value;
-//   console.log(firstName, lastName);
-//   if(firstName === '' || lastName === '') {
-//     txtErrMsg.classList.remove('hide');
-//     txtErrMsg.innerHTML = "Type a first name and a last name.";
-//   } else {
-//     // Sign in
-//     const promise = auth.createUserWithEmailAndPassword(email, pass);
-//     promise.catch(e => {
-//       console.log(e.message);
-//       txtErrMsg.classList.remove('hide');
-//       txtErrMsg.innerHTML = e.message;
-//     });
-//   }
-// });
 
 // Add Google Sign In Event
 btnGoogleSignIn.addEventListener('click', e => {
