@@ -1,15 +1,14 @@
-const config = {
-  apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
-  authDomain: "to-dos-f9e3d.firebaseapp.com",
-  databaseURL: "https://to-dos-f9e3d.firebaseio.com",
-  projectId: "to-dos-f9e3d"
-};
+// const config = {
+//   apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
+//   authDomain: "to-dos-f9e3d.firebaseapp.com",
+//   databaseURL: "https://to-dos-f9e3d.firebaseio.com",
+//   projectId: "to-dos-f9e3d"
+// };
 
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
 // Make auth and firestore references
 const auth = firebase.auth();
-const db = firebase.firestore();
 
 // Get elements
 const txtFirstName = document.getElementById('firstName');
@@ -30,22 +29,31 @@ btnSignUp.addEventListener('click', e => {
   const pass = txtPassword.value;
   console.log(firstName, lastName);
   if(firstName === '' || lastName === '') {
+    // Warn the user if firstName or lastName fields are void.
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = "Type a first name and a last name.";
   } else {
-    // Add info to database
-    db.collection('users').doc(email).set({
-      firstName: firstName,
-      lastName: lastName,
-      email: email
-    }).then(function() {
-      console.log('Document successfully written!');
-    }).catch(e => {
-      console.log('Error writing document: ', e);
-    });
+    // Add user to database
+    // db.collection('users').doc('yeah').set({
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   email: email
+    // }).then(function() {
+    //   console.log('Document successfully written!');
+    // }).catch(e => {
+    //   console.log('Error writing document: ', e);
+    // });
     // Sign up
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => {
+    auth.createUserWithEmailAndPassword(email, pass).then(cred => {
+      const userId = cred.user.uid;
+      const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+      };
+      console.log('In signup.js', userId, userData);
+      addUserToDB(userId, userData);
+    }).catch(e => {
       console.log(e.message);
       txtErrMsg.classList.remove('hide');
       txtErrMsg.innerHTML = e.message;

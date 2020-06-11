@@ -1,15 +1,5 @@
-const config = {
-  apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
-  authDomain: "to-dos-f9e3d.firebaseapp.com",
-  databaseURL: "https://to-dos-f9e3d.firebaseio.com",
-  projectId: "to-dos-f9e3d"
-};
-
-firebase.initializeApp(config);
-
 // Make auth and firestore references
 const auth = firebase.auth();
-const db = firebase.firestore();
 
 const list = document.getElementById('list');
 
