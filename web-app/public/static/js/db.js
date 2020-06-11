@@ -9,9 +9,9 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
-async function addUserToDB(userId, userData) {
+function addUserToDB(userId, userData) {
   console.log('In db.js', userId, userData);
-  return db.collection('users').doc(userId).set(userData).then(() => {
+  db.collection('users').doc(userId).set(userData).then(() => {
     console.log("User successfully added to the DB!");
   })
   .catch((e) => {
