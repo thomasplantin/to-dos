@@ -10,8 +10,7 @@ db.collection('users').get().then(snapshot => {
     const li = `
     <li>
       <p>${guide.email}</p>
-      <p>${guide.firstName}</p>
-      <p>${guide.lastName}</p>
+      <p>${guide.displayName}</p>
     </li>
     `;
     html += li;
@@ -27,6 +26,8 @@ const btnLogout = document.getElementById('btnLogout');
 // Add a realtime listener
 auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
+
+    console.log(firebaseUser.providerId);
 
     document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.displayName}!`;
 

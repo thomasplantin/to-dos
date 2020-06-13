@@ -1,12 +1,3 @@
-// const config = {
-//   apiKey: "AIzaSyDU5vyYKlQeWyJ2wTQCFmaun51w1ChSlIc",
-//   authDomain: "to-dos-f9e3d.firebaseapp.com",
-//   databaseURL: "https://to-dos-f9e3d.firebaseio.com",
-//   projectId: "to-dos-f9e3d"
-// };
-
-// firebase.initializeApp(config);
-
 // Make auth and firestore references
 const auth = firebase.auth();
 
@@ -33,31 +24,24 @@ btnSignUp.addEventListener('click', e => {
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = "Type a first name and a last name.";
   } else {
-    // Add user to database
-    // db.collection('users').doc('yeah').set({
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email
-    // }).then(function() {
-    //   console.log('Document successfully written!');
-    // }).catch(e => {
-    //   console.log('Error writing document: ', e);
-    // });
+    const userId = email;
+    const userData = {
+      displayName: `${firstName} ${lastName}`,
+      email: email
+    };
     // Sign up
     auth.createUserWithEmailAndPassword(email, pass).then(cred => {
-      const userId = cred.user.uid;
-      const userData = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email
-      };
       console.log('In signup.js', userId, userData);
-      addUserToDB(userId, userData);
+    }).then(() => {
+      console.log('User created! - ' + email);
     }).catch(e => {
       console.log(e.message);
       txtErrMsg.classList.remove('hide');
       txtErrMsg.innerHTML = e.message;
     });
+    // Add user to DB
+    console.log('Adding user (' + userId + ') to DB')
+    addUserToDB(userId, userData);
   }
 });
 
