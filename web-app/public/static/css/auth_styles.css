@@ -35,23 +35,49 @@ a:hover {
   color: #e1f4f3;
 }
 
-.img-style {
+.img-style-signup {
+  margin-top: 170px;
+  height: 370px;
+  width: auto;
+}
+
+.img-style-login {
+  margin-top: 70px;
   height: 370px;
   width: auto;
 }
 
 /* Log In */
 
-.table-struc {
-  margin: 50px auto;
+.left-col {
+  width: 50%;
+  float: left;
 }
 
-.table-col {
-  margin: 10px;
+.right-col {
+  width: 50%;
+  float: left;
+  margin: auto;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .left-col {
+    width: 100%;
+    float: none;
+  }
+  .right-col {
+    width: 500px;
+    margin: auto;
+    float: none;
+  }
+  .img-style-signup {
+    margin-top: 100px;
+  }
 }
 
 .central-square {
-  margin:20px 50px;
+  margin:20px auto;
   padding: 2% 0;
   width: 300px;
   background-color: rgba(0, 0, 0, 0.3);

@@ -9,14 +9,6 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
-// function addDummyData(data) {
-//   db.collection('users').doc('lastAddedUser').set(data).then(() => {
-//     console.log('Document successfully written!');
-//   }).catch(e => {
-//     console.log('Error writing document: ', e);
-//   });
-// }
-
 function addUserToDB(userId, userData) {
   console.log('In db.js', userId, userData);
   return db.collection("users").doc(userId).set(userData)

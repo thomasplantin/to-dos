@@ -28,77 +28,73 @@
 
 <body>
 
-  <table class="table-struc">
+  <div class="float-container">
 
-    <tr>
+    <div class="left-col">
 
-      <td class="table-col">
+      <img class="img-style-signup" src="./../static/images/to-dos-logo.png" alt="">
 
-        <img class="img-style" src="./../static/images/to-dos-logo.png" alt="">
+    </div>
 
-      </td>
+    <div class="right-col">
 
-      <td class="table-col">
+      <div class="central-square">
 
-        <div class="central-square">
-
-          <div class="sign-up-slogan">
-            <p class="sign-up-slogan-p">Sign up to start creating your online to-do lists.</p>
-          </div>
-
-          <div class="sign-in-link">
-            <button class="btn btn-google btn-danger" id="btnSignInGoogle">
-              <a class="google-sign-in-link"><i class="fab fa-google"></i> Sign up with Google</a>
-            </button>
-          </div>
-
-          <div class="sign-in-link">
-            <button class="btn btn-fb btn-primary" id="btnSignInFB">
-              <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Sign up with Facebook</a>
-            </button>
-          </div>
-
-          <table class="or-table-struc">
-            <tr>
-              <td class="or-table-col">
-                <div class="or-lines"></div>
-              </td>
-              <td class="or-table-col">
-                <p>OR</p>
-              </td>
-              <td class="or-table-col">
-                <div class="or-lines"></div>
-              </td>
-            </tr>
-          </table>
-
-          <br>
-          
-          <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field form-control">
-
-          <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field form-control">
-
-          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
-          
-          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
-
-          <br>
-
-          <button id="btnSignUp" class="btn btn-auth btn-primary">Sign Up</button>
-
-          <p id="errMsg" class="err-msg hide">My Error Message</p>
-
+        <div class="sign-up-slogan">
+          <p class="sign-up-slogan-p">Sign up to start creating your online to-do lists.</p>
         </div>
 
-        <div class="central-square">
-          <p class="to-sign-up">Have an account? <a class="to-sign-up-link" href="./login">Log In</a></p>
+        <div class="sign-in-link">
+          <button class="btn btn-google btn-danger" id="btnSignInGoogle">
+            <a class="google-sign-in-link"><i class="fab fa-google"></i> Sign up with Google</a>
+          </button>
         </div>
 
-      </td>
+        <div class="sign-in-link">
+          <button class="btn btn-fb btn-primary" id="btnSignInFB">
+            <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Sign up with Facebook</a>
+          </button>
+        </div>
 
-    </tr>
+        <table class="or-table-struc">
+          <tr>
+            <td class="or-table-col">
+              <div class="or-lines"></div>
+            </td>
+            <td class="or-table-col">
+              <p>OR</p>
+            </td>
+            <td class="or-table-col">
+              <div class="or-lines"></div>
+            </td>
+          </tr>
+        </table>
 
-  </table>
+        <br>
+        
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field form-control">
+
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field form-control">
+
+        <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
+        
+        <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
+
+        <br>
+
+        <button id="btnSignUp" class="btn btn-auth btn-primary">Sign Up</button>
+
+        <p id="errMsg" class="err-msg hide">My Error Message</p>
+
+      </div>
+
+      <div class="central-square">
+        <p class="to-sign-up">Have an account? <a class="to-sign-up-link" href="./login">Log In</a></p>
+      </div>
+
+    </div>
+
+  </div>
         
 
   <!-- Footer -->

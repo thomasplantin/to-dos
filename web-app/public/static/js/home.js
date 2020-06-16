@@ -1,41 +1,29 @@
 // Make auth and firestore references
 const auth = firebase.auth();
 
+const greeting = document.getElementById('greeting');
 const list = document.getElementById('list');
-
-db.collection('users').get().then(snapshot => {
-  let html = '';
-  snapshot.docs.forEach(doc => {
-    const guide = doc.data();
-    const li = `
-    <li>
-      <p>${guide.email}</p>
-      <p>${guide.displayName}</p>
-    </li>
-    `;
-    html += li;
-  });
-  list.innerHTML = html;
-});
-
-// Update firestore settings
-// db.settings({timestampsInSnapshots: true});
-
 const btnLogout = document.getElementById('btnLogout');
 
 // Add a realtime listener
 auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
-
-    console.log(firebaseUser.providerId);
-
-    document.getElementById('greeting').innerHTML = `Welcome ${firebaseUser.displayName}!`;
-
+    db.collection('users').doc(firebaseUser.uid).get().then(doc => {
+      greeting.innerHTML = `Welcome ${doc.data().displayName}!`;
+      const html = `
+      <li>
+        <p>email = ${doc.data().email}</p>
+        <p>name = ${doc.data().displayName}</p>
+        <p>provider = ${doc.data().provider}</p>
+      </li>
+      `;
+      list.innerHTML = html;
+    });
     // Add logout event
     btnLogout.addEventListener('click', e => {
-      auth.signOut().then(function() {
+      auth.signOut().then(() => {
         console.log(`${firebaseUser.email} signed out successfully`);
-        sendUserToOrigin();
+        sendUserToLogin();
       }).catch(function(e) {
         console.log(e);
       });
@@ -45,13 +33,13 @@ auth.onAuthStateChanged(firebaseUser => {
   }
 });
 
-function sendUserToOrigin() {
+function sendUserToLogin() {
   console.log("Sending User")
   $.ajax({
     type:'get',
     url: window.location.origin + "/home",
     success: function() {
-      console.log("SUCCESS")
+      console.log("SUCCESS, user @ login")
       window.location.href = window.location.origin + '/login';
     },
     error: function() {
@@ -59,12 +47,3 @@ function sendUserToOrigin() {
     }
   });
 }
-
-// // Firebase Database
-// const preObj = document.getElementById('object');
-
-// const dbRefObj = firebase.database().ref().child('collection');
-
-// dbRefObj.on('value', snap => {
-//   console.log(snap.val());
-// });

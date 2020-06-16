@@ -30,14 +30,15 @@ btnSignUp.addEventListener('click', e => {
       const userId = cred.user.uid;
       const userData = {
         displayName: `${firstName} ${lastName}`,
-        email: email
+        email: email,
+        provider: "Email & Pass"
       };
       console.log('In signup.js', userId, userData);
       console.log('User created! - ' + userId + ' - adding to DB...');
       return addUserToDB(userId, userData);
     }).then(() => {
       // Send user home
-      sendUserHome();
+      sendUserHomeFromSignup();
     }).catch(e => {
       console.log(e.message);
       txtErrMsg.classList.remove('hide');
@@ -48,18 +49,39 @@ btnSignUp.addEventListener('click', e => {
 
 // Add Google Sign In Event
 btnGoogleSignIn.addEventListener('click', e => {
+  e.preventDefault();
   const base_provider = new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(base_provider).then((result) => {
-    console.log(result);
-    console.log('Success, Google account linked!');
-    sendUserHome();
+    const user = result.user;
+    const isNewUser = result.additionalUserInfo.isNewUser;
+    if(isNewUser) {
+      // Add user to DB
+      console.log('We got a new user!!');
+      const userId = result.user.uid;
+      const userData = {
+        displayName: result.user.displayName,
+        email: result.user.email,
+        provider: "Google"
+      };
+      console.log('User created with Google! - ' + userId + ' - adding to DB...');
+      return addUserToDB(userId, userData);
+    } else {
+      // your sign in flow
+      console.log('user ' + user.email + ' already exists');
+      console.log('Success, Google account linked!');
+      return;
+    }
+  }).then(() => {
+    // Send User Home
+    console.log('At then!');
+    sendUserHomeFromSignup();
   }).catch((e) => {
     console.log(e);
     console.log('Failed to link Google account');
   });
 });
 
-function sendUserHome() {
+function sendUserHomeFromSignup() {
   console.log("Sending User Home...")
   $.ajax({
     type:'get',

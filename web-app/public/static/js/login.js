@@ -17,8 +17,9 @@ btnLogin.addEventListener('click', e => {
   const email = txtEmail.value;
   const pass = txtPassword.value;
   // Sign in
-  const promise = auth.signInWithEmailAndPassword(email, pass);
-  promise.catch(e => {
+  auth.signInWithEmailAndPassword(email, pass).then(() => {
+    sendUserHomeFromLogin();
+  }).catch(e => {
     console.log(e.message);
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = e.message;
@@ -26,46 +27,62 @@ btnLogin.addEventListener('click', e => {
 
 });
 
-// Add Google Sign In Event
+// Add Google Log In Event
 btnGoogleSignIn.addEventListener('click', e => {
   const base_provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(base_provider).then(function(result) {
-    console.log(result);
-    console.log('Success, Google account linked!');
-  }).catch(function(e) {
+  auth.signInWithPopup(base_provider).then((result) => {
+    const user = result.user;
+    const isNewUser = result.additionalUserInfo.isNewUser;
+    if(isNewUser) {
+      // Add user to DB
+      console.log('We got a new user!!');
+      const userId = result.user.uid;
+      const userData = {
+        displayName: result.user.displayName,
+        email: result.user.email,
+        provider: "Google"
+      };
+      console.log('User created with Google! - ' + userId + ' - adding to DB...');
+      return addUserToDB(userId, userData);
+    } else {
+      // your sign in flow
+      console.log('user ' + user.email + ' already exists');
+      console.log('Success, Google account linked!');
+      return;
+    }
+  }).then(() => {
+    // Send User Home
+    sendUserHomeFromLogin();
+  }).catch((e) => {
     console.log(e);
     console.log('Failed to link Google account');
   });
 });
 
 // Add a realtime listener
-auth.onAuthStateChanged(firebaseUser => {
-  if(firebaseUser) {
-    console.log(`Logged in as (${firebaseUser.email})`);
-    firebaseUser.getIdToken().then(function(token) {
-      document.cookie = "token=" + token;
-    });
-    sendUser(firebaseUser);
-  } else {
-    console.log('not logged in');
-  }
-});
+// auth.onAuthStateChanged(firebaseUser => {
+//   if(firebaseUser) {
+//     console.log(`Logged in as (${firebaseUser.email})`);
+//     firebaseUser.getIdToken().then(function(token) {
+//       document.cookie = "token=" + token;
+//     });
+//     sendUserHomeFromLogin();
+//   } else {
+//     console.log('not logged in');
+//   }
+// });
 
-function sendUser(user) {
-  console.log("Sending User")
+function sendUserHomeFromLogin() {
+  console.log("Sending User Home...")
   $.ajax({
     type:'get',
     url: window.location.origin + "/login",
-    data: {
-      email: user.email,
-      username: user.displayName
-    },
-    success: function() {
-      console.log("SUCCESS")
+    success: () => {
       window.location.href = window.location.origin + '/home';
+      console.log("SUCCESS, user @ Home!");
     },
-    error: function() {
-        alert("Oops, couldn't log in. Please try again!");
+    error: () => {
+      alert("Oops, couldn't sign up... Please refresh the page and try again!");
     }
   });
 }

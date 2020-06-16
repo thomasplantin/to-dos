@@ -28,71 +28,63 @@
 
 <body>
 
-  <table class="table-struc">
+  <div class="float-container">
 
-    <tr>
+    <div class="left-col">
 
-      <td class="table-col">
+      <img class="img-style-login" src="./../static/images/to-dos-logo.png" alt="">
 
-        <img class="img-style" src="./../static/images/to-dos-logo.png" alt="">
+    </div>
 
-      </td>
+    <div class="right-col">
 
-      <td class="table-col">
+      <div class="central-square">
 
-        <div class="central-square">
+        <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
+        
+        <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
 
-          <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
-          
-          <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
+        <br>
+        
+        <button id="btnLogIn" class="btn btn-auth btn-primary">Log In</button>
 
-          <br>
-          
-          <button id="btnLogIn" class="btn btn-auth btn-primary">Log In</button>
+        <p id="errMsg" class="err-msg hide">My Error Message</p>
 
-          <p id="errMsg" class="err-msg hide">My Error Message</p>
+        <table class="or-table-struc">
+          <tr>
+            <td class="or-table-col">
+              <div class="or-lines"></div>
+            </td>
+            <td class="or-table-col">
+              <p>OR</p>
+            </td>
+            <td class="or-table-col">
+              <div class="or-lines"></div>
+            </td>
+          </tr>
+        </table>
 
-          <table class="or-table-struc">
-            <tr>
-              <td class="or-table-col">
-                <div class="or-lines"></div>
-              </td>
-              <td class="or-table-col">
-                <p>OR</p>
-              </td>
-              <td class="or-table-col">
-                <div class="or-lines"></div>
-              </td>
-            </tr>
-          </table>
-
-          <div class="sign-in-link">
-            <button class="btn btn-google btn-danger" id="btnSignInGoogle">
-              <a class="google-sign-in-link"><i class="fab fa-google"></i> Log in with Google</a>
-            </button>
-          </div>
-
-          <div class="sign-in-link">
-            <button class="btn btn-fb btn-primary" id="btnSignInFB">
-              <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Log in with Facebook</a>
-            </button>
-          </div>
-
-          <!-- <button id="btnSignInGoogle" class="btn btn-danger">Sign in with Google</button>
-
-          <button id="btnSignInFB" class="btn btn-primary">Sign in with Facebook</button> -->
-
+        <div class="sign-in-link">
+          <button class="btn btn-google btn-danger" id="btnSignInGoogle">
+            <a class="google-sign-in-link"><i class="fab fa-google"></i> Log in with Google</a>
+          </button>
         </div>
 
-        <div class="central-square">
-          <p class="to-sign-up">Don't have an account? <a class="to-sign-up-link" href="./signup">Sign Up</a></p>
+        <div class="sign-in-link">
+          <button class="btn btn-fb btn-primary" id="btnSignInFB">
+            <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Log in with Facebook</a>
+          </button>
         </div>
 
-      </td>
+      </div>
 
-    </tr>
+      <div class="central-square">
+        <p class="to-sign-up">Don't have an account? <a class="to-sign-up-link" href="./signup">Sign Up</a></p>
+      </div>
 
-  </table>
+    </div>
+
+  </div>
         
 
   <!-- Footer -->
