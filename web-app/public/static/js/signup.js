@@ -48,10 +48,10 @@ btnSignUp.addEventListener('click', e => {
 // Add Google Sign In Event
 btnGoogleSignIn.addEventListener('click', e => {
   const base_provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(base_provider).then(function(result) {
+  auth.signInWithPopup(base_provider).then((result) => {
     console.log(result);
     console.log('Success, Google account linked!');
-  }).catch(function(e) {
+  }).catch((e) => {
     console.log(e);
     console.log('Failed to link Google account');
   });
