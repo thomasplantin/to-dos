@@ -19,7 +19,11 @@ const db = firebase.firestore();
 
 function addUserToDB(userId, userData) {
   console.log('In db.js', userId, userData);
-  db.collection("users").doc(userId).set(userData).catch((e) => {
+  return db.collection("users").doc(userId).set(userData)
+  .then(() => {
+    console.log("User successfully added to the DB!");
+  })
+  .catch((e) => {
     console.log("Error adding user to the DB: ", e);
   });
 }
