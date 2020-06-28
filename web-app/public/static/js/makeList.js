@@ -1,24 +1,16 @@
 // Make auth and firestore references
 const auth = firebase.auth();
 
-const greeting = document.getElementById('greeting');
-const list = document.getElementById('list');
 const btnLogout = document.getElementById('btnLogout');
+const txtListTitle = document.getElementById('listTitle');
+const txtListDesc = document.getElementById('listDescription');
+const btnAddList = document.getElementById('submitList');
 
 // Add a realtime listener
 auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
-    db.collection('users').doc(firebaseUser.uid).get().then(doc => {
-      greeting.innerHTML = `Welcome ${doc.data().displayName}!`;
-      const html = `
-      <div class = "list-item">
-        <p>email = ${doc.data().email}</p>
-        <p>name = ${doc.data().displayName}</p>
-        <p>provider = ${doc.data().provider}</p>
-      </div>
-      `;
-      list.innerHTML = html;
-    });
+    userId = firebaseUser.uid;
+    console.log(userId);
     // Add logout event
     btnLogout.addEventListener('click', e => {
       auth.signOut().then(() => {
@@ -27,6 +19,21 @@ auth.onAuthStateChanged(firebaseUser => {
       }).catch(function(e) {
         console.log(e);
       });
+    });
+    // Add make list event
+    btnAddList.addEventListener('click', e => {
+      e.preventDefault();
+      const listTitle = txtListTitle.value;
+      const listDesc = txtListDesc.value;
+      listData = {
+        listTitle: listTitle,
+        description: listDesc,
+        timeStamp: Date.now(),
+        image: "imgURL",
+        geoLoc: "geoCoordNOW"
+      }
+      console.log("Adding List to DB...")
+      addListToDB(userId, listData);
     });
   } else {
     console.log('not logged in');
@@ -37,7 +44,7 @@ function sendUserToLogin() {
   console.log("Sending User")
   $.ajax({
     type:'get',
-    url: window.location.origin + "/home",
+    url: window.location.origin + "/makelist",
     success: function() {
       console.log("SUCCESS, user @ login")
       window.location.href = window.location.origin + '/login';

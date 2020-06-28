@@ -4,14 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="google-signin-client_id" content="560702819439-dfd9dv47eks3ka0e97ar6ut5e1jf7u8t.apps.googleusercontent.com">
-  <title>To-Dos - Sign Up</title>
+  <title>To-Dos - My Lists</title>
 
   <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
   <!-- Bootstrap + CSS style sheet -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type='text/css' href="static/css/auth_styles.css">
+  <link rel="stylesheet" type='text/css' href="static/css/home_styles.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -27,73 +27,33 @@
 </head>
 
 <body>
+  <div class="container-fluid">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="./home">To-Dos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-labe="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-  <div class="float-container">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./makelist">Make a List</a>
+          </li>
 
-    <div class="left-col">
+          <li class="nav-item">
+            <a class="nav-link" href="./mylists">My Lists</a>
+          </li>
 
-      <img class="img-style-signup" src="./../static/images/to-dos-logo.png" alt="">
-
-    </div>
-
-    <div class="right-col">
-
-      <div class="central-square">
-
-        <div class="sign-up-slogan">
-          <p class="sign-up-slogan-p">Sign up to start creating your online to-do lists.</p>
-        </div>
-
-        <div class="sign-in-link">
-          <button class="btn btn-google btn-danger" id="btnSignInGoogle">
-            <a class="google-sign-in-link"><i class="fab fa-google"></i> Sign up with Google</a>
-          </button>
-        </div>
-
-        <div class="sign-in-link">
-          <button class="btn btn-fb btn-primary" id="btnSignInFB">
-            <a class="fb-sign-in-link"><i class="fab fa-facebook"></i> Sign up with Facebook</a>
-          </button>
-        </div>
-
-        <table class="or-table-struc">
-          <tr>
-            <td class="or-table-col">
-              <div class="or-lines"></div>
-            </td>
-            <td class="or-table-col">
-              <p>OR</p>
-            </td>
-            <td class="or-table-col">
-              <div class="or-lines"></div>
-            </td>
-          </tr>
-        </table>
-
-        <br>
-        
-        <input type="text" id="firstName" name="firstName" placeholder="First Name" class="field form-control">
-
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="field form-control">
-
-        <input id="txtEmail" type="email" name="email" placeholder="Email" class="field form-control">
-        
-        <input id="txtPassword" type="password" name="password" placeholder="Password" class="field form-control">
-
-        <br>
-
-        <button id="btnSignUp" class="btn btn-auth btn-primary">Sign Up</button>
-
-        <p id="errMsg" class="err-msg hide">My Error Message</p>
-
+          <li class="nav-item">
+            <button id="btnLogout" type="button" class="btn btn-danger">Logout</button>
+          </li>
+        </ul>
       </div>
+    </nav>
 
-      <div class="central-square">
-        <p class="to-sign-up">Have an account? <a class="to-sign-up-link" href="./login">Log In</a></p>
-      </div>
-
-    </div>
-
+    <p>My Lists</p>
+    
   </div>
         
 
@@ -103,12 +63,14 @@
     <div class="container-fluid-footer">
       <table class="table-bottom">
         <tr>
-          <td class="fas-bottom"><a class="footer-env-link" href="mailto: todos.contact@gmail.com"><i class="fas fa-envelope"></i></a></td>
+          <td class="fas-bottom"><a href="mailto: todos.contact@gmail.com"><i class="fas fa-envelope"></i></a></td>
         </tr>
       </table>
       <p class="copyright-para">© Copyright 2020 To-Dos</p>
     </div>
   </footer>
+
+  <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
@@ -120,9 +82,8 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 
-  <script type="text/javascript" src="static/js/misc.js"></script>
   <script type="text/javascript" src="static/js/db.js"></script>
-  <script type="text/javascript" src="static/js/signup.js"></script>
+  <script type="text/javascript" src="static/js/myLists.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>

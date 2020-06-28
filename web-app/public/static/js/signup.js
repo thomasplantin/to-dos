@@ -20,7 +20,7 @@ btnSignUp.addEventListener('click', e => {
   const email = txtEmail.value;
   const pass = txtPassword.value;
   console.log("Sign Up Btn clicked!");
-  if(firstName === '' || lastName === '') {
+  if(isNullOrWhitespace(firstName) || isNullOrWhitespace(lastName)) {
     // Warn the user if firstName or lastName fields are void.
     txtErrMsg.classList.remove('hide');
     txtErrMsg.innerHTML = "Type a first name and a last name.";

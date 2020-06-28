@@ -89,6 +89,22 @@ a:hover
   color: #40bad5;
 }
 
+/* Make List */
+
+.form-group-title {
+  text-align: left;
+  color: #e1f4f3;
+}
+
+.form-label {
+  
+}
+
+.image-size {
+  width: 100px;
+  height: 100px;
+}
+
 /* Footer Section */
 
 .container-fluid-footer {

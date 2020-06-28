@@ -27,23 +27,38 @@
 </head>
 
 <body>
+  <div class="container-fluid">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="./home">To-Dos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-labe="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-  <div class="top-title">
-    <h1>To-Dos | HOME</h1>
-    <p>Your to-do list with you, anywhere you go.</p>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./makelist">Make a List</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./mylists">My Lists</a>
+          </li>
+
+          <li class="nav-item">
+            <button id="btnLogout" type="button" class="btn btn-danger">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="central-square">
+      <h3 id="greeting" class="greeting"></h3>
+      <div id="list">
+      </div>
+    </div>
+    
   </div>
-
-  <div class="central-square">
-    <h3 id="greeting" class="greeting"></h3>
-    <ul id="list">
-
-    </ul>
-    <button id="btnLogout" type="button" class="btn btn-danger">Logout</button>
-  </div>
-
-  <pre id="object">
-
-  </pre>
         
 
   <!-- Footer -->

@@ -59,19 +59,6 @@ btnGoogleSignIn.addEventListener('click', e => {
   });
 });
 
-// Add a realtime listener
-// auth.onAuthStateChanged(firebaseUser => {
-//   if(firebaseUser) {
-//     console.log(`Logged in as (${firebaseUser.email})`);
-//     firebaseUser.getIdToken().then(function(token) {
-//       document.cookie = "token=" + token;
-//     });
-//     sendUserHomeFromLogin();
-//   } else {
-//     console.log('not logged in');
-//   }
-// });
-
 function sendUserHomeFromLogin() {
   console.log("Sending User Home...")
   $.ajax({

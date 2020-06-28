@@ -1,24 +1,11 @@
 // Make auth and firestore references
 const auth = firebase.auth();
 
-const greeting = document.getElementById('greeting');
-const list = document.getElementById('list');
 const btnLogout = document.getElementById('btnLogout');
 
 // Add a realtime listener
 auth.onAuthStateChanged(firebaseUser => {
   if(firebaseUser) {
-    db.collection('users').doc(firebaseUser.uid).get().then(doc => {
-      greeting.innerHTML = `Welcome ${doc.data().displayName}!`;
-      const html = `
-      <div class = "list-item">
-        <p>email = ${doc.data().email}</p>
-        <p>name = ${doc.data().displayName}</p>
-        <p>provider = ${doc.data().provider}</p>
-      </div>
-      `;
-      list.innerHTML = html;
-    });
     // Add logout event
     btnLogout.addEventListener('click', e => {
       auth.signOut().then(() => {
@@ -37,7 +24,7 @@ function sendUserToLogin() {
   console.log("Sending User")
   $.ajax({
     type:'get',
-    url: window.location.origin + "/home",
+    url: window.location.origin + "/mylists",
     success: function() {
       console.log("SUCCESS, user @ login")
       window.location.href = window.location.origin + '/login';
