@@ -67,21 +67,30 @@ a:hover
   color: #40bad5;
 }
 
-/* Make List */
+/* List lists */
 
-.form-group-title {
-  text-align: left;
-  color: #e1f4f3;
+.top-title {
+  margin-bottom: 30px;
 }
 
-.hide {
-  visibility: hidden;
+.listed-list {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.err-msg {
-  color: #dd3546;
-  font-size: medium;
-  font-style: italic;
+.listed-list:hover {
+  background-color: #40bad5;
+}
+
+.listed-list:hover .list-description {
+  display: block;
+}
+
+.list-description {
+  font-size: small;
+  color: #323232;
+  display: none;
 }
 
 /* Footer Section */

@@ -8,17 +8,20 @@ const info = require('./config.js');
 const app = express();
 
 app.use(morgan('tiny'));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public/static')));
 
 // Import my routes
 const routerSignup = require('./back-end/routes/auth_route.js');
 app.use(routerSignup);
 const routerHome = require('./back-end/routes/home_route.js');
 app.use(routerHome);
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/public/views"));
 
 app.get('/', (req, res) => {
   // Returns the root page of the project
-  res.sendFile(__dirname + '/public/index.html');
+  res.render("signup.html")
 });
 
 app.listen(info.PORT, () => {

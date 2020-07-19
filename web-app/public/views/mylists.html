@@ -11,7 +11,7 @@
 
   <!-- Bootstrap + CSS style sheet -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type='text/css' href="static/css/home_styles.css">
+  <link rel="stylesheet" type='text/css' href="css/mylists_styles.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -52,7 +52,14 @@
       </div>
     </nav>
 
-    <p>My Lists</p>
+    <div class="top-title">
+      <h3>My Lists</h3>
+    </div>
+
+    <div id="listed-lists">
+      <!-- Where the lists are fetched from the DB and rendered -->
+    </div>
+
     
   </div>
         
@@ -82,8 +89,8 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
 
-  <script type="text/javascript" src="static/js/db.js"></script>
-  <script type="text/javascript" src="static/js/myLists.js"></script>
+  <script type="text/javascript" src="js/db.js"></script>
+  <script type="text/javascript" src="js/myLists.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </body>
