@@ -2,6 +2,7 @@
 const auth = firebase.auth();
 
 const btnLogout = document.getElementById('btnLogout');
+const btnAddList = document.getElementById('btnAddList');
 const listedLists = document.getElementById('listed-lists');
 
 // Add a realtime listener
@@ -17,6 +18,13 @@ auth.onAuthStateChanged(firebaseUser => {
         console.log(e);
       });
     });
+
+    // Add list adding event
+    btnAddList.addEventListener('click', e => {
+      sendUserToMakeList();
+    });
+
+    // Get all the lists from the DB and paste them on the page
     getAllListsFromDB(userId).then((lists) => {
       var html = "";
       var titleArray = [];
@@ -33,7 +41,7 @@ auth.onAuthStateChanged(firebaseUser => {
       console.log("Sorted => ", titleArray);
       for(title of titleArray) {
         html += 
-        `<a href="./listview/${title.listTitle}">
+        `<a href="./listview/title=${title.listTitle}">
           <div class="listed-list">
             <p>${title.listTitle}</p>
             <p class="list-description">${title.listDesc}</p>
@@ -55,6 +63,21 @@ function sendUserToLogin() {
     success: function() {
       console.log("SUCCESS, user @ login")
       window.location.href = window.location.origin + '/login';
+    },
+    error: function() {
+      alert("Oops, couldn't log in. Please try again!");
+    }
+  });
+}
+
+function sendUserToMakeList() {
+  console.log("Sending User")
+  $.ajax({
+    type:'get',
+    url: window.location.origin + "/mylists",
+    success: function() {
+      console.log("SUCCESS, user @ login")
+      window.location.href = window.location.origin + '/makelist';
     },
     error: function() {
       alert("Oops, couldn't log in. Please try again!");

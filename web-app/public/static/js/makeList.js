@@ -92,7 +92,7 @@ function sendUserToListView(listTitle, listDesc) {
     },
     success: function() {
       console.log("SUCCESS, user @ list view");
-      window.location.href = window.location.origin + `/listview/4`;
+      window.location.href = window.location.origin + `/listview/title=${listTitle}`;
     },
     error: function() {
       alert("Oops, couldn't send to list view. Please try again!");

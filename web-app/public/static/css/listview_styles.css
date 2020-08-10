@@ -67,34 +67,75 @@ a:hover
   color: #40bad5;
 }
 
-/* List lists */
+/* List View */
 
-.top-title {
-  margin-bottom: 30px;
+.hide {
+  visibility: hidden;
 }
 
-.listed-list {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.listed-list:hover {
-  background-color: #40bad5;
-}
-
-.listed-list:hover .list-description {
-  display: block;
-}
-
-.list-description {
-  font-size: small;
-  color: #323232;
-  display: none;
+.description {
+  margin: 20px 0;
+  font-style: italic;
 }
 
 .btn-add {
   width: 100%;
+}
+
+.btn-margin {
+  margin: 10px 0;
+}
+
+.single-item {
+  margin: 5px 0;
+  background-color: #006a71;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.item-txt {
+  display: block;
+  padding-left: 12px;
+}
+
+.item-txt-crossed {
+  display: block;
+  padding-left: 12px;
+  /* text-decoration: line-through; */
+}
+
+.single-item-crossed {
+  margin: 5px 0;
+  background-color: #278123;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.check {
+  width: 15px;
+  height: 15px;
+}
+
+.err-msg {
+  color: #dd3546;
+  font-size: medium;
+  font-style: italic;
+}
+
+.btn-item-margin {
+  width: 20px;
+  height: 18px;
+  float: right;
+  margin: 3px 10px 3px 0;
+  padding: 0;
+}
+
+.tiny-trash-div {
+  margin-top: -6px;
+}
+
+.trash-font {
+  font-size: 8px;
 }
 
 /* Footer Section */

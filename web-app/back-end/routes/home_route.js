@@ -4,7 +4,7 @@ const path = require("path");
 const router = express.Router();
 
 router.get('/home', (req, res) => {
-  res.render("home.html");
+  res.render("mylists.html");
 });
 
 router.get('/makelist', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/mylists', (req, res) => {
   res.render("mylists.html");
 });
 
-router.get('/listview/:listTitle', (req, res) => {
+router.get('/listview/title=:listTitle', (req, res) => {
   console.log(req.params);
   res.render("listview.html", req.params);
 });

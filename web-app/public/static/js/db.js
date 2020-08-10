@@ -9,6 +9,8 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
+// ------------------------------------------------- Handling Users
+
 async function addUserToDB(userId, userData) {
   console.log('In db.js - addUserToDB() - ', userId, userData);
   try {
@@ -23,6 +25,8 @@ async function addUserToDB(userId, userData) {
   }
 }
 
+// ------------------------------------------------- Handling Lists
+
 async function addListToDB(userId, listData) {
   console.log("In db.js - addListToDB() - ", userId, listData);
   try {
@@ -36,7 +40,6 @@ async function addListToDB(userId, listData) {
     console.log("Error adding list to the DB: ", e);
   }
 }
-
 
 async function getAllListsFromDB(userId) {
   console.log("In db.js - getAllListsFromDB() - ", userId);
@@ -68,8 +71,100 @@ async function getListFromDB(userId, listTitle) {
       .get().catch((error) => {
         console.log("Error getting document: ", error);
       });
-    console.log(list);
+    console.log(list.data());
     return list;
+  }
+  catch (e) {
+    console.log("Error getting list from the DB: ", e);
+  }
+}
+
+async function deleteListFromDB(userId, listTitle) {
+  console.log("In db.js - deleteListFromDB() - ", userId, listTitle);
+  try {
+    const list = await db
+      .collection("users").doc(userId)
+      .collection("lists").doc(listTitle)
+      .delete().then(() => {
+        console.log("Successfully deleted document!");
+      }).catch((error) => {
+        console.log("Error deleting document: ", error);
+      });
+  }
+  catch (e) {
+    console.log("Error getting list from the DB: ", e);
+  }
+}
+
+// ------------------------------------------------- Handling List Items
+
+async function addItemToDB(userId, listTitle, itemData) {
+  console.log("In db.js - addItemToDB() - ", userId, listTitle, itemData);
+  try {
+    await db
+      .collection("users").doc(userId)
+      .collection("lists").doc(listTitle)
+      .collection("items").doc(itemData.itemTitle)
+      .set(itemData);
+    console.log("Item successfully added to the DB!");
+  }
+  catch (e) {
+    console.log("Error adding item to the DB: ", e);
+  }
+}
+
+async function getAllItemsFromDB(userId, listTitle) {
+  console.log("In db.js - getAllItemsFromDB() - ", userId, listTitle);
+  try {
+    const items = [];
+    await db
+      .collection("users").doc(userId)
+      .collection("lists").doc(listTitle)
+      .collection("items").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          items.push(doc);
+        });
+      }).catch((error) => {
+        console.log("Error getting items: ", error);
+      });
+    return items;
+  }
+  catch (e) {
+    console.log("Error getting list from the DB: ", e);
+  }
+}
+
+async function getItemFromDB(userId, listTitle, listItem) {
+  console.log("In db.js - getItemFromDB() - ", userId, listTitle, listItem);
+  try {
+    const list = await db
+      .collection("users").doc(userId)
+      .collection("lists").doc(listTitle)
+      .collection("items").doc(listItem)
+      .get().catch((error) => {
+        console.log("Error getting document: ", error);
+      });
+    console.log(list.data());
+    return list;
+  }
+  catch (e) {
+    console.log("Error getting list from the DB: ", e);
+  }
+}
+
+async function deleteItemFromDB(userId, listTitle, listItem) {
+  console.log("In db.js - deleteItemFromDB() - ", userId, listTitle, listItem);
+  try {
+    const list = await db
+      .collection("users").doc(userId)
+      .collection("lists").doc(listTitle)
+      .collection("items").doc(listItem)
+      .delete().then(() => {
+        console.log("Successfully deleted document!");
+      }).catch((error) => {
+        console.log("Error deleting document: ", error);
+      });
   }
   catch (e) {
     console.log("Error getting list from the DB: ", e);
