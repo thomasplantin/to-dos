@@ -7,6 +7,7 @@ const btnListDelDiv = document.getElementById('btnListDelDiv');
 const btnAddItem = document.getElementById('btnAddItem');
 const loadingSpinner = document.getElementById('loadingSpinner');
 
+const progressBar = document.getElementById('progressBar');
 const listedItems = document.getElementById('listedItems');
 const itemForm = document.getElementById('itemForm');
 
@@ -41,6 +42,14 @@ auth.onAuthStateChanged(firebaseUser => {
       titleTxt.innerHTML = list.data().listTitle;
       descTxt.innerHTML = list.data().description;
     });
+    getProgressPercentageFromDB(userId, listTitle).then((percentageCompletion) => {
+      if(!isNaN(percentageCompletion)) {
+        progressBar.innerHTML = `
+          <p>List ${percentageCompletion}% Completed</p>
+          <progress value="${percentageCompletion}" max="100"> ${percentageCompletion}% </progress>
+        `;
+      }
+    });
     getAllItemsFromDB(userId, listTitle).then((items) => {
       var html = "";
       for(item of items) {
@@ -54,18 +63,13 @@ auth.onAuthStateChanged(firebaseUser => {
         return a.timeStamp - b.timeStamp;
       });
       console.log("Array of items is sorted by date: ", itemArray);
-      loadingSpinner.parentNode.removeChild(loadingSpinner);
-      btnListDelDiv.classList.remove('hide');
-      itemForm.classList.remove('hide');
       for(itemData of itemArray) {
         html += addItemToPage(listTitle, itemData);
       }
+      loadingSpinner.parentNode.removeChild(loadingSpinner);
+      btnListDelDiv.classList.remove('hide');
+      itemForm.classList.remove('hide');
       listedItems.innerHTML = html;
-      for(item of itemArray) {
-        if ($(`#check-${spacesToColons(item.itemTitle)}`).is(':checked')){
-          console.log(item.itemTitle);
-        }
-      }
     });
 
     // Add List Delete event
@@ -99,6 +103,14 @@ auth.onAuthStateChanged(firebaseUser => {
           doneBool.checked = false;
         }).catch((e) => {
           console.log(e);
+        });
+        getProgressPercentageFromDB(userId, listTitle).then((percentageCompletion) => {
+          if(!isNaN(percentageCompletion)) {
+            progressBar.innerHTML = `
+              <p>List ${percentageCompletion}% Completed</p>
+              <progress value="${percentageCompletion}" max="100"> ${percentageCompletion}% </progress>
+            `;
+          }
         });
       } else {
         txtErrMsg.classList.remove('hide');

@@ -33,6 +33,14 @@ function checkboxClick(listTitle, item) {
         }
         addItemToDB(userId, listTitle, itemData).then(() => {
           console.log('Item Changed!', itemData);
+          getProgressPercentageFromDB(userId, listTitle).then((percentageCompletion) => {
+            if(!isNaN(percentageCompletion)) {
+              progressBar.innerHTML = `
+                <p>List ${percentageCompletion}% Completed</p>
+                <progress value="${percentageCompletion}" max="100"> ${percentageCompletion}% </progress>
+              `;
+            }
+          });
         });
       });
     }
@@ -49,9 +57,21 @@ function trashClick(listTitle, item) {
         const cssInput = spacesToColons(item);
         const inputDiv = document.getElementById(`div-${cssInput}`);
         inputDiv.parentNode.removeChild(inputDiv);
+        getProgressPercentageFromDB(userId, listTitle).then((percentageCompletion) => {
+          if(!isNaN(percentageCompletion)) {
+            progressBar.innerHTML = `
+              <p>List ${percentageCompletion}% Completed</p>
+              <progress value="${percentageCompletion}" max="100"> ${percentageCompletion}% </progress>
+            `;
+          }
+        });
       });
     }
   });
+}
+
+function addPercentageBarToPage(listTitle) {
+
 }
 
 function addItemToPage(listTitle, itemData) {

@@ -170,3 +170,25 @@ async function deleteItemFromDB(userId, listTitle, listItem) {
     console.log("Error getting list from the DB: ", e);
   }
 }
+
+// ------------------------------------------------- Handling Progress Bar
+
+async function getProgressPercentageFromDB(userId, listTitle) {
+  try {
+    var totalCount = 0;
+    var completedCount = 0;
+    await getAllItemsFromDB(userId, listTitle).then((items) => {
+      for(item of items) {
+        totalCount++;
+        if(item.data().doneStatus) {
+          completedCount++;
+        }
+      }
+    });
+    const percentageDone = (completedCount/totalCount*100).toFixed(0);
+    console.log("Percentage = " + percentageDone + "%");
+    return percentageDone;
+  } catch (e) {
+    console.log("Error getting progress percentage from the DB: ", e);
+  }
+}
