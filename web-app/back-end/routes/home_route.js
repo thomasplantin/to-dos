@@ -4,7 +4,7 @@ const path = require("path");
 const router = express.Router();
 
 router.get('/home', (req, res) => {
-  res.render("mylists.html");
+  res.render("home.html");
 });
 
 router.get('/makelist', (req, res) => {

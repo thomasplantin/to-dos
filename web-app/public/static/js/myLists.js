@@ -2,6 +2,8 @@
 const auth = firebase.auth();
 
 const btnLogout = document.getElementById('btnLogout');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const topTitle = document.getElementById('topTitle');
 const btnAddList = document.getElementById('btnAddList');
 const listedLists = document.getElementById('listed-lists');
 
@@ -24,7 +26,7 @@ auth.onAuthStateChanged(firebaseUser => {
       sendUserToMakeList();
     });
 
-    // Get all the lists from the DB and paste them on the page
+    // Get all the lists from the DB and display them on the page
     getAllListsFromDB(userId).then((lists) => {
       var html = "";
       var titleArray = [];
@@ -39,15 +41,23 @@ auth.onAuthStateChanged(firebaseUser => {
         return a.listTitle.toLowerCase().localeCompare(b.listTitle.toLowerCase());
       });
       console.log("Sorted => ", titleArray);
-      for(title of titleArray) {
-        html += 
-        `<a href="./listview/title=${title.listTitle}">
-          <div class="listed-list">
-            <p>${title.listTitle}</p>
-            <p class="list-description">${title.listDesc}</p>
-          </div>
-        </a>`;
+      console.log("Array LENGTH = ", titleArray.length);
+      if(titleArray.length === 0) {
+        html = `<p class="no-list-msg">Seems like you don't have a list yet... Let's add one!</p>`;
+      } else {
+        for(title of titleArray) {
+          html += 
+          `<a href="./listview/title=${title.listTitle}">
+            <div class="listed-list">
+              <p>${title.listTitle}</p>
+              <p class="list-description">${title.listDesc}</p>
+            </div>
+          </a>`;
+        }
       }
+      loadingSpinner.parentNode.removeChild(loadingSpinner);
+      topTitle.classList.remove('hide');
+      btnAddList.classList.remove('hide');
       listedLists.innerHTML = html;
     });
   } else {

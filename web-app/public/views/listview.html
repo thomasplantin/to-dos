@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/listview_styles.css">
 
+  <!-- Special Checkbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -30,7 +33,7 @@
   <div class="container-fluid">
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="./../home">To-Dos</a>
+      <a class="navbar-brand" href="./../home">To-Dos <i class="far fa-check-circle"></i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-labe="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -53,15 +56,18 @@
     </nav>
 
     <div>
+      <div id="loadingSpinner" class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
       <h3 id="title"></h3>
       <p id="description" class="description"></p>
-      <div class="btn-margin">
+      <div id="btnListDelDiv" class="btn-margin hide">
         <button id="btnListDel" type="button" class="btn btn-danger btn-margin"><i class="fas fa-trash-alt"></i> Delete List</button>
       </div>
-      <div id="listed-items">
+      <div id="listedItems">
         <!-- Where the items of a list are fetched from the DB and rendered -->
       </div>
-      <div id="item-form">
+      <div id="itemForm" class="hide">
         <!-- Where the items of a list are filled and then added to the DB and rendered -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">

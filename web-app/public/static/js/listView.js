@@ -3,10 +3,12 @@ const auth = firebase.auth();
 
 const btnLogout = document.getElementById('btnLogout');
 const btnListDel = document.getElementById('btnListDel');
+const btnListDelDiv = document.getElementById('btnListDelDiv');
 const btnAddItem = document.getElementById('btnAddItem');
+const loadingSpinner = document.getElementById('loadingSpinner');
 
-const listedItems = document.getElementById('listed-items');
-const itemForm = document.getElementById('item-form');
+const listedItems = document.getElementById('listedItems');
+const itemForm = document.getElementById('itemForm');
 
 const titleTxt = document.getElementById('title');
 const descTxt = document.getElementById('description');
@@ -52,6 +54,9 @@ auth.onAuthStateChanged(firebaseUser => {
         return a.timeStamp - b.timeStamp;
       });
       console.log("Array of items is sorted by date: ", itemArray);
+      loadingSpinner.parentNode.removeChild(loadingSpinner);
+      btnListDelDiv.classList.remove('hide');
+      itemForm.classList.remove('hide');
       for(itemData of itemArray) {
         html += addItemToPage(listTitle, itemData);
       }

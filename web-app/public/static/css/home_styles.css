@@ -67,6 +67,8 @@ a:hover
   margin: auto;
   margin-top: 20px;
   padding: 2% 0;
+  background-color: #776d8a;
+  border-radius: 15px;
 }
 
 .list-item {
@@ -86,7 +88,11 @@ a:hover
 }
 
 .greeting {
-  color: #40bad5;
+  margin-top: 10px;
+}
+
+.btn-central-menu {
+  margin: 40px 50px 10px 50px;
 }
 
 /* Footer Section */

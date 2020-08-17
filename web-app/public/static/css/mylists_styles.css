@@ -73,6 +73,13 @@ a:hover
   margin-bottom: 30px;
 }
 
+.no-list-msg {
+  color: #ffa36c;
+  font-size: medium;
+  font-style: italic;
+  margin: 10px 0;
+}
+
 .listed-list {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;

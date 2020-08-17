@@ -21,6 +21,12 @@ auth.onAuthStateChanged(firebaseUser => {
         console.log(e);
       });
     });
+    // Add "Enter" key event
+    txtListTitle.addEventListener("keyup", (event) => {
+      if(event.code === "Enter") { // "Enter" key on the keyboard
+        btnAddList.click();
+      }
+    });
     // Add make list event
     btnAddList.addEventListener('click', e => {
       e.preventDefault();
@@ -39,9 +45,7 @@ auth.onAuthStateChanged(firebaseUser => {
             listData = {
               listTitle: listTitle,
               description: listDesc,
-              timeStamp: Date.now(),
-              image: "imgURL",
-              geoLoc: "geoCoordNOW"
+              timeStamp: Date.now()
             }
             console.log("Adding List to DB...");
             txtErrMsg.classList.add('hide');
@@ -53,7 +57,7 @@ auth.onAuthStateChanged(firebaseUser => {
             });
           } else {
             txtErrMsg.classList.remove('hide');
-            txtErrMsg.innerHTML = "This list title is already used by another list. Please change the title of the list or delete the already existing list.";
+            txtErrMsg.innerHTML = "One of your lists already has this title. Please change the title of the list or delete the existing list.";
           }
         });
       } else {
