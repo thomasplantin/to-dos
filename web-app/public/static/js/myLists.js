@@ -30,6 +30,8 @@ auth.onAuthStateChanged(firebaseUser => {
     getAllListsFromDB(userId).then((lists) => {
       var html = "";
       var titleArray = [];
+      var gotPercentagesFlag = false;
+      var percentageIterCount = 0;
       for(list of lists) {
         titleArray.push({
           listTitle: list.data().listTitle,
@@ -40,25 +42,55 @@ auth.onAuthStateChanged(firebaseUser => {
       titleArray.sort((a, b) => {
         return a.listTitle.toLowerCase().localeCompare(b.listTitle.toLowerCase());
       });
-      console.log("Sorted => ", titleArray);
-      console.log("Array LENGTH = ", titleArray.length);
       if(titleArray.length === 0) {
         html = `<p class="no-list-msg">Seems like you don't have a list yet... Let's add one!</p>`;
       } else {
         for(title of titleArray) {
-          html += 
-          `<a href="./listview/title=${title.listTitle}">
-            <div class="listed-list">
-              <p>${title.listTitle}</p>
-              <p class="list-description">${title.listDesc}</p>
-            </div>
-          </a>`;
+          const listTitle = title.listTitle;
+          const listDesc = title.listDesc;
+          getProgressPercentageFromDB(userId, listTitle).then((percentageCompletion) => {
+            console.log(percentageIterCount, titleArray);
+            percentageIterCount++;
+            if(!isNaN(percentageCompletion)) {
+              html += 
+                `<a href="./listview/title=${listTitle}">
+                  <div class="listed-list">
+                    <p>${listTitle}</p>
+                    <p class="list-description">${listDesc}</p>
+                    <p class="list-description">${percentageCompletion}% completed</p>
+                  </div>
+                </a>`;
+            } else {
+              html += 
+                `<a href="./listview/title=${listTitle}">
+                  <div class="listed-list">
+                    <p>${listTitle}</p>
+                    <p class="list-description">${listDesc}</p>
+                    <p class="list-description">0% completed</p>
+                  </div>
+                </a>`;
+            }
+            console.log(html);
+            if(percentageIterCount === titleArray.length) {
+              loadingSpinner.parentNode.removeChild(loadingSpinner);
+              topTitle.classList.remove('hide');
+              btnAddList.classList.remove('hide');
+              listedLists.innerHTML = html;
+            }
+          });
+          // html += 
+          // `<a href="./listview/title=${title.listTitle}">
+          //   <div class="listed-list">
+          //     <p>${title.listTitle}</p>
+          //     <p class="list-description">${title.listDesc}</p>
+          //   </div>
+          // </a>`;
         }
       }
-      loadingSpinner.parentNode.removeChild(loadingSpinner);
-      topTitle.classList.remove('hide');
-      btnAddList.classList.remove('hide');
-      listedLists.innerHTML = html;
+      // loadingSpinner.parentNode.removeChild(loadingSpinner);
+      // topTitle.classList.remove('hide');
+      // btnAddList.classList.remove('hide');
+      // listedLists.innerHTML = html;
     });
   } else {
     console.log('not logged in');
