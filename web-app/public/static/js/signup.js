@@ -10,6 +10,7 @@ const btnSignUp = document.getElementById('btnSignUp');
 const txtErrMsg = document.getElementById('errMsg');
 
 const btnGoogleSignIn = document.getElementById('btnSignInGoogle');
+const btnFBSignIn = document.getElementById('btnSignInFB');
 
 // Add signup event
 btnSignUp.addEventListener('click', e => {
@@ -73,11 +74,45 @@ btnGoogleSignIn.addEventListener('click', e => {
     }
   }).then(() => {
     // Send User Home
-    console.log('At then!');
     sendUserHomeFromSignup();
   }).catch((e) => {
     console.log(e);
     console.log('Failed to link Google account');
+  });
+});
+
+// Add FB Sign In Event
+btnFBSignIn.addEventListener('click', e => {
+  e.preventDefault();
+  const base_provider = new firebase.auth.FacebookAuthProvider();
+  auth.signInWithPopup(base_provider).then((result) => {
+    console.log(result);
+    const user = result.user;
+    console.log(user);
+    const isNewUser = result.additionalUserInfo.isNewUser;
+    if(isNewUser) {
+      // Add user to DB
+      console.log('We got a new user!!');
+      const userId = result.user.uid;
+      const userData = {
+        displayName: result.user.displayName,
+        email: result.user.email,
+        provider: "Facebook"
+      };
+      console.log('User created with Facebook! - ' + userId + ' - adding to DB...');
+      return addUserToDB(userId, userData);
+    } else {
+      // your sign in flow
+      console.log('user ' + user.email + ' already exists');
+      console.log('Success, Facebook account linked!');
+      return;
+    }
+  }).then(() => {
+    // Send User Home
+    sendUserHomeFromSignup();
+  }).catch((e) => {
+    console.log(e);
+    console.log('Failed to link Facebook account');
   });
 });
 

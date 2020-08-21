@@ -44,6 +44,10 @@ auth.onAuthStateChanged(firebaseUser => {
       });
       if(titleArray.length === 0) {
         html = `<p class="no-list-msg">Seems like you don't have a list yet... Let's add one!</p>`;
+        loadingSpinner.parentNode.removeChild(loadingSpinner);
+        topTitle.classList.remove('hide');
+        btnAddList.classList.remove('hide');
+        listedLists.innerHTML = html;
       } else {
         for(title of titleArray) {
           const listTitle = title.listTitle;
@@ -87,10 +91,6 @@ auth.onAuthStateChanged(firebaseUser => {
           // </a>`;
         }
       }
-      // loadingSpinner.parentNode.removeChild(loadingSpinner);
-      // topTitle.classList.remove('hide');
-      // btnAddList.classList.remove('hide');
-      // listedLists.innerHTML = html;
     });
   } else {
     console.log('not logged in');

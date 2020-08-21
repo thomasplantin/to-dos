@@ -10,6 +10,7 @@ const btnLogin = document.getElementById('btnLogIn');
 const txtErrMsg = document.getElementById('errMsg');
 
 const btnGoogleSignIn = document.getElementById('btnSignInGoogle');
+const btnFBSignIn = document.getElementById('btnSignInFB');
 
 // Add login event
 btnLogin.addEventListener('click', e => {
@@ -30,6 +31,38 @@ btnLogin.addEventListener('click', e => {
 // Add Google Log In Event
 btnGoogleSignIn.addEventListener('click', e => {
   const base_provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(base_provider).then((result) => {
+    const user = result.user;
+    const isNewUser = result.additionalUserInfo.isNewUser;
+    if(isNewUser) {
+      // Add user to DB
+      console.log('We got a new user!!');
+      const userId = result.user.uid;
+      const userData = {
+        displayName: result.user.displayName,
+        email: result.user.email,
+        provider: "Google"
+      };
+      console.log('User created with Google! - ' + userId + ' - adding to DB...');
+      return addUserToDB(userId, userData);
+    } else {
+      // your sign in flow
+      console.log('user ' + user.email + ' already exists');
+      console.log('Success, Google account linked!');
+      return;
+    }
+  }).then(() => {
+    // Send User Home
+    sendUserHomeFromLogin();
+  }).catch((e) => {
+    console.log(e);
+    console.log('Failed to link Google account');
+  });
+});
+
+// Add FB Log In Event
+btnFBSignIn.addEventListener('click', e => {
+  const base_provider = new firebase.auth.FacebookAuthProvider();
   auth.signInWithPopup(base_provider).then((result) => {
     const user = result.user;
     const isNewUser = result.additionalUserInfo.isNewUser;
