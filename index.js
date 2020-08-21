@@ -24,6 +24,6 @@ app.get('/', (req, res) => {
   res.render("signup.html")
 });
 
-app.listen(info.PORT, () => {
+app.listen(process.env.PORT || info.PORT, () => {
   console.log('[INFO] Listening on port ' + info.PORT + '...');
 });
