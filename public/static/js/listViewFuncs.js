@@ -1,4 +1,6 @@
 function checkboxClick(listTitle, item) {
+  listTitle = listTitle.replace(/-/g, "'");
+  item = item.replace(/-/g, "'");
   console.log("checkbox clicked on " + item);
   const cssInput = spacesToColons(item);
   const inputDiv = document.getElementById(`div-${cssInput}`);
@@ -48,6 +50,8 @@ function checkboxClick(listTitle, item) {
 }
 
 function trashClick(listTitle, item) {
+  listTitle = listTitle.replace(/-/g, "'");
+  item = item.replace(/-/g, "'");
   console.log("trash clicked on " + item);
   const auth = firebase.auth();
   auth.onAuthStateChanged(firebaseUser => {
@@ -70,9 +74,9 @@ function trashClick(listTitle, item) {
   });
 }
 
-function addPercentageBarToPage(listTitle) {
+// function addPercentageBarToPage(listTitle) {
 
-}
+// }
 
 function addItemToPage(listTitle, itemData) {
   const item = itemData.itemTitle;
@@ -82,8 +86,8 @@ function addItemToPage(listTitle, itemData) {
     return `
       <div id="div-${spacesToColons(item)}" class="single-item-crossed">
         <label id="label-${spacesToColons(item)}" class="item-txt-crossed">
-          <input id="check-${spacesToColons(item)}" onclick="checkboxClick('${listTitle}', '${item}')" class="check" type="checkbox" checked/> ${item}
-          <button id="trash-${spacesToColons(item)}" onclick="trashClick('${listTitle}', '${item}')" type="button" class="btn btn-secondary btn-item-margin">
+          <input id="check-${spacesToColons(item)}" onclick="checkboxClick('${listTitle.replace(/'/g, "-")}', '${item.replace(/'/g, "-")}')" class="check" type="checkbox" checked/> ${item}
+          <button id="trash-${spacesToColons(item)}" onclick="trashClick('${listTitle.replace(/'/g, "-")}', '${item.replace(/'/g, "-")}')" type="button" class="btn btn-secondary btn-item-margin">
             <div class="tiny-trash-div">
               <i class="fas fa-trash-alt trash-font"></i>
             </div>
@@ -95,8 +99,8 @@ function addItemToPage(listTitle, itemData) {
     return `
       <div id="div-${spacesToColons(item)}" class="single-item">
         <label id="label-${spacesToColons(item)}" class="item-txt">
-          <input id="check-${spacesToColons(item)}" onclick="checkboxClick('${listTitle}', '${item}')" class="check" type="checkbox"/> ${item}
-          <button id="trash-${spacesToColons(item)}" onclick="trashClick('${listTitle}', '${item}')" type="button" class="btn btn-secondary btn-item-margin">
+          <input id="check-${spacesToColons(item)}" onclick="checkboxClick('${listTitle.replace(/'/g, "-")}', '${item.replace(/'/g, "-")}')" class="check" type="checkbox"/> ${item}
+          <button id="trash-${spacesToColons(item)}" onclick="trashClick('${listTitle.replace(/'/g, "-")}', '${item.replace(/'/g, "-")}')" type="button" class="btn btn-secondary btn-item-margin">
             <div class="tiny-trash-div">
               <i class="fas fa-trash-alt trash-font"></i>
             </div>
